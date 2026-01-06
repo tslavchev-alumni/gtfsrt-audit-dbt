@@ -1,0 +1,4 @@
+feed_type,max_ingestion_staleness_s,max_source_staleness_s,max_ingestion_lag_s
+alerts,300,900,120
+trips,180,300,30
+vehicles,180,300,30

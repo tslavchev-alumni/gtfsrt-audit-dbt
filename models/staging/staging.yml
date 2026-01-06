@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: stg_entities_canonical
+    description: Canonical GTFS-RT entities with normalized UTC timestamps.
+    columns:
+      - name: feed_type
+        tests: [not_null]
+      - name: fetch_ts_utc
+        tests: [not_null]
+      - name: source_header_ts_utc
