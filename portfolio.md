@@ -1,6 +1,6 @@
 # GTFS-Realtime Feed Health Audit — Portfolio Notes
 
-This document provides additional context, design rationale, and lessons learned for the GTFS-Realtime Feed Health Audit project.
+This document provides additional context, design rationale, and lessons learned for the GTFS-Realtime Feed Health Audit project. For a concise overview of the project and repository scope, see the [README](./README.md).
 
 The README in this repository describes the dbt project and final architecture. This document focuses on *why* the system was built the way it was, how it evolved, and what I learned while implementing it across different data platforms.
 
