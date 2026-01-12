@@ -1,3 +1,7 @@
+This repository contains the dbt project for a GTFS-Realtime feed health monitoring pipeline.
+
+This project is presented as a portfolio artifact. While this repository contains only the dbt code, the system was implemented and evaluated across multiple execution environments, which are described below for context.
+
 GTFS-Realtime Feed Health Audit
 
 This project implements a production-style data pipeline to ingest, monitor, and evaluate the health of GTFS-Realtime feeds using AWS, Snowflake, and dbt Cloud.
