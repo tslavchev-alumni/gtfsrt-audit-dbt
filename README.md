@@ -2,7 +2,7 @@ This repository contains the dbt project for a GTFS-Realtime feed health monitor
 
 This project is presented as a portfolio artifact. While this repository contains only the dbt code, the system was implemented and evaluated across multiple execution environments, which are described below for context.
 
-GTFS-Realtime Feed Health Audit
+# GTFS-Realtime Feed Health Audit
 
 This project implements a production-style data pipeline to ingest, monitor, and evaluate the health of GTFS-Realtime feeds using AWS, Snowflake, and dbt Cloud.
 
@@ -20,4 +20,4 @@ Transformations are scheduled via dbt Cloud to run daily at 10:00 UTC. The sched
 
 This project focuses on data engineering mechanics and operational correctness. It does not attempt to build dashboards, perform predictive analytics, or replace upstream GTFS tooling. Those are intentional non-goals.
 
-Built as a portfolio project to demonstrate data engineering readiness using modern cloud tooling.
+Built as a portfolio project to demonstrate data engineering readiness using modern cloud tooling. For a deeper discussion of system design decisions, architecture evolution, and lessons learned, see [portfolio.md](./portfolio.md).
