@@ -16,7 +16,7 @@ The goal of this project was not to demonstrate transit analytics expertise, but
 
 ## Architecture Evolution
 
-### Snoflake Baseline
+### Snowflake Baseline
 
 I started with a Snowflake-only implementation to establish a baseline and understand the shape and reliability of the GTFS-Realtime data before introducing additional tooling.
 
