@@ -2,17 +2,15 @@
 
 This document provides additional context, design rationale, and lessons learned for the GTFS-Realtime Feed Health Audit project. For a concise overview of the project and repository scope, see the [readme](./README.md).
 
-The README in this repository describes the dbt project and final architecture. This document focuses on *why* the system was built the way it was, how it evolved, and what I learned while implementing it across different data platforms.
-
 ## Problem framing
 
-The focus on feed health was a deliberate simplification, not the end goal.
+The focus on feed health was a deliberate simplification. Feed health is not the end goal.
 
-I chose feed health because it was the most trivial non-useless thing I could do with GTFS-Realtime data. It is easy to define, easy to validate, and immediately exposes ingestion gaps, timestamp ambiguity, and state management problems. That made it a good forcing function for building and testing the data pipeline itself.
+I chose feed health because it was the most trivial non-useless thing I could do with GTFS-Realtime data. It is easy to define, easy to validate, and immediately exposes ingestion gaps, timestamp ambiguity, and state management problems. That made it good for building and testing the data pipeline itself.
 
-If this were a production project, feed health would be table stakes rather than the primary outcome. Once trust in the feed exists, the more interesting work would move toward downstream analytics: service reliability, vehicle behavior, schedule adherence, or rider-facing metrics. Those problems are domain-specific and context-dependent, so I intentionally avoided them here.
+If this were a production project, feed health would be a basic first step rather than the primary outcome. Once trust in the feed exists, the more interesting work would move toward downstream analytics: service reliability, vehicle behavior, schedule adherence, rider-facing metrics, etc. Those problems are domain-specific and context-dependent, so I intentionally avoided them here.
 
-The goal of this project was not to demonstrate transit analytics expertise, but to design and reason about a reliable, testable, and explainable data engineering system. Feed health was simply the smallest question that required solving all of the underlying engineering problems.
+The goal of this project was not to demonstrate transit analytics expertise, but to design and reason about a reliable, testable, and explainable data engineering system.
 
 ## Architecture Evolution
 
