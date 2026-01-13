@@ -138,6 +138,12 @@ Throughout the project, I intentionally stopped short of full automation or cont
 
 This was not a limitation of the tools, but a design choice. Production readiness is not about maximizing completeness; it is about minimizing unnecessary complexity while preserving correctness. Knowing when to stop building is as important as knowing how to build.
 
+### Exploring ML and LLM features requires a clear problem framing
+
+As part of this project, I brifly experimented with Snowflake Cortex to understand how Snowflake's native LM and LLM work in practice. This was a deliberate exploration rather than a response to a specific requirement I was facing.
+
+The experiment clarified whre ML and LLM fit in a data lifecycle. Cortex felt most appropriate as an augmentation layer, useful for enrichment, summarization, and classification once the underlying data is trustworthy and well modeled, rather than as a substitute for building the foundation.
+
 ## Cheat Sheet
 
 This section is a personal reference for interviews and quick recall. It is intentionally concise and assumes familiarity with the project.
