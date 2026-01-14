@@ -32,13 +32,13 @@ While  logic and assumptions being hard-coded in SQL and task definitions worked
 
 dbt changed this by separating *what* the models were supposed to do from *how* the warehouse executed them. Incremental behavior became declarative rather than implicit. Dependencies were expressed as a graph instead of being scattered across task schedules. Data quality expectations were written down as tests instead of being assumed or checked informally.
 
-dbt did not make the pipeline more powerful; it made it more legible and in the long run - more maintainable. The same transformations could have continued to run in Snowflake alone, but dbt provided structure around them: versioned models, explicit contracts, and failure modes that were visible and intentional rather than accidental.
+dbt did not make the pipeline more powerful. It made it more legible and in the long run - more maintainable. The same transformations could have continued to run in Snowflake alone, but dbt provided structure around them: versioned models, explicit contracts, and failure modes that were visible and intentional rather than accidental.
 
 ### 3.3 Databricks mirror: same problem, different defaults
 
-After the Snowflake + dbt pipeline was complete and stable, I mirrored the same problem in Databricks. This was not intended as a migration or a replacement, but as a way to compare how the same mental model translated to a lakehouse-style system with different defaults.
+After the Snowflake + dbt pipeline was complete and stable, I mirrored the same problem in Databricks. This was not intended as a migration or a replacement. It was a way to compare how the same mental model translated to a lakehouse-style system with different defaults.
 
-The scope was intentionally constrained. I reused the same source data, the same canonical concepts, and the same health logic. The goal was not to redesign the pipeline, but to see how much of the existing structure would carry over when the execution environment changed.
+The scope was intentionally constrained. I reused the same source data, the same canonical concepts, and the same health logic. The goal was to see how much of the existing structure would carry over when the execution environment changed.
 
 What stood out immediately was how much behavior Databricks encoded into defaults. Incremental ingestion from object storage, schema handling, and state management were largely handled by the platform. As a result, the amount of code required to achieve the same outcome was noticeably smaller than in the Snowflake-only or Snowflake + dbt versions.
 
@@ -56,7 +56,7 @@ This section summarizes the core design concepts that shaped the project. These 
 
 One of the earliest design decisions was to introduce a canonical representation of the data before building analytics on top of it. In practice, this meant defining a Snowflake view (and later equivalent logic elsewhere) that normalized timestamps, identifiers, and semantics into a stable shape.
 
-The purpose of the canonical layer was not performance or convenience, but insulation. By establishing a clear contract between ingestion and analytics, downstream models could be written against a predictable interface even as upstream behavior changed.
+The purpose of the canonical layer was not performance or convenience. It was insulation. By establishing a clear contract between ingestion and analytics, downstream models could be written against a predictable interface even as upstream behavior changed.
 
 In retrospect, this boundary mattered more than any individual tool choice. The same canonical concepts carried cleanly from Snowflake-only SQL to dbt models and to Databricks, which made the system easier to reason about and compare across platforms.
 
@@ -94,9 +94,9 @@ This project reinforced several lessons about data engineering that go beyond sp
 
 ### Legibility matters more than raw capability
 
-One recurring theme was that the difficulty of the project did not come from implementing transformations, but from being able to reason about what the system was doing over time. Snowflake alone was capable of performing all required computations, but intent and assumptions became increasingly implicit.
+One recurring theme was that the difficulty of the project did not come from implementing transformations, but from being able to reason about what the system was doing over time. Snowflake alone was capable of performing all required computations, but intent and assumptions remained implicit.
 
-Introducing dbt did not add new capabilities; it made behavior legible. Incremental rules, dependencies, and data quality expectations were written down instead of inferred. This made the system easier to change, easier to explain, and easier to trust. The lesson was not that more tooling is better, but that explicit structure reduces cognitive load as systems grow.
+Introducing dbt did not add new capabilities. It made behavior legible. Incremental rules, dependencies, and data quality expectations were written down instead of inferred. This made the system easier to change, easier to explain, and easier to trust. The lesson was that explicit structure reduces cognitive load as systems grow.
 
 ---
 
@@ -136,13 +136,13 @@ This highlighted that good architectures migrate by re-expression rather than tr
 
 Throughout the project, I intentionally stopped short of full automation or continuous operation. Streaming jobs were bounded, environments were not kept running unnecessarily, and non-essential features were excluded.
 
-This was not a limitation of the tools, but a design choice. Production readiness is not about maximizing completeness; it is about minimizing unnecessary complexity while preserving correctness. Knowing when to stop building is as important as knowing how to build.
+This was not a limitation of the tools. It was a design choice. Production readiness is not about maximizing completeness. It is about minimizing unnecessary complexity while preserving correctness. Knowing when to stop building is as important as knowing how to build.
 
 ### ML and LLM features require a clear problem framing
 
 As part of this project, I brifly experimented with Snowflake Cortex to understand how Snowflake's native LM and LLM work in practice. This was a deliberate exploration rather than a response to a specific requirement I was facing.
 
-The experiment clarified whre ML and LLM fit in a data lifecycle. Cortex felt most appropriate as an augmentation layer, useful for enrichment, summarization, and classification once the underlying data is trustworthy and well modeled, rather than as a substitute for building the foundation.
+The experiment clarified where ML and LLM fit in a data lifecycle. Cortex felt most appropriate as an augmentation layer, useful for enrichment, summarization, and classification once the underlying data is trustworthy and well modeled, rather than as a substitute for building the foundation.
 
 ## Cheat Sheet
 
