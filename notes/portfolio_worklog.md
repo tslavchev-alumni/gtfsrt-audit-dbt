@@ -1,10 +1,19 @@
-## 2026-01-16 — Ingestion refactor
-- Split Lambda into 5 files (config, http_utils, parser, writer, handler)
-- Added per-feed failure isolation (partial success allowed)
-- Kept JSONL schema + S3 keys identical
-- Switched to env-based config (S3_BUCKET, TIMEOUT)
-- Verified prod via Lambda version + S3 output
-- Synced deployed ZIP → repo (source only, no vendored deps)
+## 2026-01-16 — API ingestion (Lambda) published to repository
+
+What changed:
+- Refactored GTFS-RT ingestion Lambda into 5 files (config, http_utils, parser, writer, handler)
+- Added per-feed failure isolation (partial success allowed; fail only if all feeds fail)
+- Introduced env-based configuration (bucket, prefix, timeout)
+- Added structured logging for fetch/write per feed
+- Kept JSONL schema and S3 key structure identical to previous version
+- Downloaded deployed ZIP and synced source files to repo (no vendored deps)
+
+Operational steps:
+- Verified behavior via Lambda test + CloudWatch logs
+- Published Lambda version for rollback
+
+- Set environment variables in Lambda configuration
 
 Why:
-- Showing API ingestion
+- Show API ingestion
+- Goal: make boundaries inspectable without overengineering
