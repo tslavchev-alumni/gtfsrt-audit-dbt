@@ -1,0 +1,38 @@
+create or replace semantic view ANALYTICS.GTFS_RT.GTFS_RT_FEED_HEALTH
+	tables (
+		ANALYTICS.GTFS_RT.FEED_HEALTH_5M comment='5-minute bucketed feed health facts. All timestamps are UTC. Use this table for operational health questions and trends.
+'
+	)
+	facts (
+		FEED_HEALTH_5M.SECONDS_SINCE_LAST_FETCH as SECONDS_SINCE_LAST_FETCH with synonyms=('pipeline freshness','ingestion freshness','seconds since last fetch','fetch staleness') comment='Pipeline freshness (fetch staleness). Seconds between bucket_end_utc and latest_fetch_ts_utc. Lower is better.
+',
+		FEED_HEALTH_5M.SECONDS_SOURCE_STALE as SECONDS_SOURCE_STALE with synonyms=('source freshness','producer freshness','seconds source stale','source staleness') comment='Producer freshness (source staleness). Seconds between bucket_end_utc and latest_source_ts_utc. Lower is better.
+',
+		FEED_HEALTH_5M.SECONDS_INGESTION_LAG as SECONDS_INGESTION_LAG with synonyms=('lag','ingestion lag','source to fetch lag') comment='Ingestion lag. Seconds between latest_source_ts_utc and latest_fetch_ts_utc. Lower is better.
+'
+	)
+	dimensions (
+		FEED_HEALTH_5M.FEED_TYPE as FEED_TYPE with synonyms=('feed','feed type','vehicles','trips','alerts') comment='GTFS-RT feed type.',
+		FEED_HEALTH_5M.HEALTH_STATUS as HEALTH_STATUS with synonyms=('status','health','ok','warn','fail') comment='Health classification for the bucket (OK/WARN/FAIL).',
+		FEED_HEALTH_5M.PRIMARY_ISSUE as PRIMARY_ISSUE with synonyms=('issue','problem','failure mode','root cause') comment='Primary issue label when not OK (e.g., pipeline_stale, source_stale).',
+		FEED_HEALTH_5M.BUCKET_START_UTC as BUCKET_START_UTC with synonyms=('time','timestamp','bucket start','start time','last 24 hours','last 48 hours','rolling window') comment='Start of the 5-minute bucket in UTC.
+IMPORTANT TIME SEMANTICS: - Interpret phrases like "last 24 hours", "last 48 hours", "last N hours" as ROLLING WINDOWS
+  relative to the current timestamp (NOW), not as calendar days.
+- Only use calendar-day logic if the user explicitly says "calendar day", "yesterday",
+  "previous day", or provides a specific date.
+- When excluding/ignoring times of day (e.g., "exclude 07:00-10:00 UTC"),
+  apply that as a TIME-OF-DAY FILTER within the chosen rolling window.
+',
+		FEED_HEALTH_5M.BUCKET_END_UTC as BUCKET_END_UTC with synonyms=('bucket end','end time') comment='End of the 5-minute bucket in UTC.'
+	)
+	metrics (
+		FEED_HEALTH_5M.BUCKET_COUNT as COUNT(*) with synonyms=('buckets','intervals','count of buckets') comment='Number of 5-minute buckets.',
+		FEED_HEALTH_5M.AVG_PIPELINE_FRESHNESS_S as AVG(SECONDS_SINCE_LAST_FETCH) with synonyms=('average pipeline freshness','avg freshness','mean freshness') comment='Average pipeline freshness (seconds since last fetch).',
+		FEED_HEALTH_5M.AVG_INGESTION_LAG_S as AVG(SECONDS_INGESTION_LAG) with synonyms=('average lag','avg lag','mean lag') comment='Average ingestion lag (seconds).',
+		FEED_HEALTH_5M.P95_INGESTION_LAG_S as PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY SECONDS_INGESTION_LAG) with synonyms=('p95 lag','95th percentile lag') comment='95th percentile ingestion lag (seconds).',
+		FEED_HEALTH_5M.FAIL_BUCKETS as SUM(IFF(HEALTH_STATUS = 'FAIL', 1, 0)) with synonyms=('fail count','fail buckets') comment='Count of FAIL buckets.',
+		FEED_HEALTH_5M.WARN_BUCKETS as SUM(IFF(HEALTH_STATUS = 'WARN', 1, 0)) with synonyms=('warn count','warn buckets') comment='Count of WARN buckets.'
+	)
+	comment='Feed health and freshness KPIs (5-minute buckets) for the GTFS-RT audit pipeline. Designed for rolling-window analysis (e.g., "last 24 hours") with UTC timestamps.
+'
+	with extension (CA='{"tables":[{"name":"FEED_HEALTH_5M","dimensions":[{"name":"FEED_TYPE","is_enum":true},{"name":"HEALTH_STATUS","is_enum":true},{"name":"PRIMARY_ISSUE"}],"facts":[{"name":"SECONDS_SINCE_LAST_FETCH"},{"name":"SECONDS_SOURCE_STALE"},{"name":"SECONDS_INGESTION_LAG"}],"metrics":[{"name":"BUCKET_COUNT"},{"name":"AVG_PIPELINE_FRESHNESS_S"},{"name":"AVG_INGESTION_LAG_S"},{"name":"P95_INGESTION_LAG_S"},{"name":"FAIL_BUCKETS"},{"name":"WARN_BUCKETS"}],"time_dimensions":[{"name":"BUCKET_START_UTC"},{"name":"BUCKET_END_UTC"}]}]}');
