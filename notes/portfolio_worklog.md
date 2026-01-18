@@ -20,4 +20,4 @@ Why:
 
 ## 2026-01-18 — Reviewed S3 -> snowflake pipe
 - S3 bucket defined as snowflake stage
-- pipe in snowflake auto-ingests new files in the stage *one JSON element per row*.
+- Pipe in snowflake auto-ingests new files in the stage *one JSON element per row*.
