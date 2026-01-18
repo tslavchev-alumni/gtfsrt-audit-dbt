@@ -18,6 +18,6 @@ Why:
 - Show API ingestion
 - Goal: make boundaries inspectable without overengineering
 
-## 2026-01-18 - Reviewed S3 -> snowflake pipe
-- S3 bucket defined as snowflake stage
-- Pipe in snowflake auto-ingests new files in the stage *one JSON element per row*.
+## 2026-01-18 - Reviewed S3 -> Snowflake pipe
+- S3 bucket defined as Snowflake stage
+- Pipe in Snowflake auto-ingests new files in the stage *one JSON element per row*.
