@@ -1,4 +1,3 @@
-
 -- What thresholds define acceptable feed health?
 -- Grain: 1 row per feed_type
 -- Centralize health thresholds as data, not embedded logic.
