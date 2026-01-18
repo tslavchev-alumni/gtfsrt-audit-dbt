@@ -1,4 +1,5 @@
 -- This is the only place that reads raw
+-- This is the canonical contract/Silver boundary
 
 create or replace view ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL(
 	FEED_TYPE,
