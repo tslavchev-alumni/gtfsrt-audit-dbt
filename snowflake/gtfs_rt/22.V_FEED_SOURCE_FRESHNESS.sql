@@ -1,3 +1,10 @@
+-- Is the source feed updating?
+-- 1 row per feed type
+-- Everything comes via the canonical contract / Silver boundary ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL
+-- UTC standardized timezone across the board
+-- Uses GTFS-RT FeedHeader.timestamp (source_header_ts) when present.
+-- Rows without source_header_ts are excluded.
+
 create or replace view ANALYTICS.GTFS_RT.V_FEED_SOURCE_FRESHNESS(
 	FEED_TYPE,
 	LATEST_SOURCE_TS_UTC,
