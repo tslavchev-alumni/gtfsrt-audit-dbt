@@ -6,7 +6,6 @@
 -- This view is the primary semantic surface for feed health pre-dbt.
 -- Time: UTC standardized across the board
 
-
 create or replace view ANALYTICS.GTFS_RT.V_FEED_HEALTH_STATUS(
 	FEED_TYPE,
 	LATEST_FETCH_TS_UTC,
