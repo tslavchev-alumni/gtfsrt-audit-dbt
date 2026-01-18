@@ -1,3 +1,6 @@
+-- Semantic view for Snowflake Cortex Analyst (AI-facing).
+-- Built on top of FEED_HEALTH_5M (5-minute health facts) to support rolling-window questions.
+
 create or replace semantic view ANALYTICS.GTFS_RT.GTFS_RT_FEED_HEALTH
 	tables (
 		ANALYTICS.GTFS_RT.FEED_HEALTH_5M comment='5-minute bucketed feed health facts. All timestamps are UTC. Use this table for operational health questions and trends.
@@ -36,3 +39,4 @@ IMPORTANT TIME SEMANTICS: - Interpret phrases like "last 24 hours", "last 48 hou
 	comment='Feed health and freshness KPIs (5-minute buckets) for the GTFS-RT audit pipeline. Designed for rolling-window analysis (e.g., "last 24 hours") with UTC timestamps.
 '
 	with extension (CA='{"tables":[{"name":"FEED_HEALTH_5M","dimensions":[{"name":"FEED_TYPE","is_enum":true},{"name":"HEALTH_STATUS","is_enum":true},{"name":"PRIMARY_ISSUE"}],"facts":[{"name":"SECONDS_SINCE_LAST_FETCH"},{"name":"SECONDS_SOURCE_STALE"},{"name":"SECONDS_INGESTION_LAG"}],"metrics":[{"name":"BUCKET_COUNT"},{"name":"AVG_PIPELINE_FRESHNESS_S"},{"name":"AVG_INGESTION_LAG_S"},{"name":"P95_INGESTION_LAG_S"},{"name":"FAIL_BUCKETS"},{"name":"WARN_BUCKETS"}],"time_dimensions":[{"name":"BUCKET_START_UTC"},{"name":"BUCKET_END_UTC"}]}]}');
+
