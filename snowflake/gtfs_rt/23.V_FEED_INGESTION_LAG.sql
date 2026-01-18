@@ -1,3 +1,10 @@
+-- How far behind is ingestion relative to source?
+-- 1 row per feed type
+-- Everything comes via the canonical contract / Silver boundary ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL
+-- UTC standardized timezone across the board
+-- Lag = fetch_ts - source_header_ts (time between producer-reported timestamp and our ingestion timestamp)
+-- Rows without source_header_ts are excluded.
+
 create or replace view ANALYTICS.GTFS_RT.V_FEED_INGESTION_LAG(
 	FEED_TYPE,
 	LATEST_FETCH_TS_UTC,
