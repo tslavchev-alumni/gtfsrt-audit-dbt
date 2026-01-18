@@ -1,6 +1,6 @@
 -- Is my ingestion running?
 -- 1 row per feed type
--- Everything comes via the canonical contract/Silver boundary ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL
+-- Everything comes via the canonical contract / Silver boundary ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL
 -- UTC standardized timezone across the board
 
 create or replace view ANALYTICS.GTFS_RT.V_FEED_INGESTION_FRESHNESS(
