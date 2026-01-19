@@ -1,4 +1,4 @@
-## 2026-01-16 — API ingestion (Lambda) published to repository
+## 2026-01-16 - API ingestion (Lambda) published to repository
 
 What changed:
 - Refactored GTFS-RT ingestion Lambda into 5 files (config, http_utils, parser, writer, handler)
@@ -17,3 +17,7 @@ Operational steps:
 Why:
 - Show API ingestion
 - Goal: make boundaries inspectable without overengineering
+
+## 2026-01-18 - Reviewed S3 -> Snowflake pipe
+- S3 bucket defined as Snowflake stage
+- Pipe in Snowflake auto-ingests new files in the stage *one JSON element per row*.
