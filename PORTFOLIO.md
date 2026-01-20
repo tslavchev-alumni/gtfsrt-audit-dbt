@@ -98,10 +98,9 @@ Across all implementations, the most persistent source of complexity was state. 
 
 ---
 
-### Narrow scope enables depth
+### Narrow project scope enables broad tooling scope
 
-Focusing on feed health enabled deeper exploration of ingestion, contracts, and incremental state without being distracted by domain-specific analytics. Solving a
-small but structurally demanding problem provided more learning than broader but shallower use cases.
+Focusing on feed health enabled deeper exploration of ingestion, contracts, and incremental state without being distracted by domain-specific analytics. Solving a small but structurally demanding problem provided more learning than broader but shallower use cases.
 
 ---
 
