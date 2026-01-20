@@ -1,5 +1,7 @@
 # Architecture Overview
 
+This document serves as a navigational overview of the repository, pointing to the primary components and their roles in the system. Detailed design rationale lives in [portfolio.md](./portfolio.md).
+
 ## High-level flow
 Lambda -> S3 -> Snowflake (canonical views + tasks) -> dbt -> semantic layer (Cortex)
 
