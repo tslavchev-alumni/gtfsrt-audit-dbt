@@ -6,7 +6,7 @@ This document serves as a navigational overview of the repository, pointing to t
 Lambda -> S3 -> Snowflake (canonical views + tasks) -> dbt -> semantic layer (Cortex)
 
 ## Repository structure
-- ingestion/        # AWS Lambda code (GTFS-RT ingestion → JSONL)
+- ingestion/        # AWS Lambda code (GTFS-RT ingestion -> JSONL)
 - snowflake/        # Pre-dbt Snowflake objects (views, tasks, semantic view)
 - models/           # dbt models (minute facts, 5-minute health, marts)
 - seeds/            # dbt seeds (health thresholds)
