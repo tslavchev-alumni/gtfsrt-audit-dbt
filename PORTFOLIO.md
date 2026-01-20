@@ -34,7 +34,7 @@ dbt was introduced not to enable new transformations, but to make system behavio
 
 Incremental behavior became declarative rather than implicit. Dependencies were expressed as a graph rather than encoded in task schedules. Data quality expectations were written down as tests instead of being assumed.
 
-dbt did not make the pipeline more powerful. It made it more legible. The same logic could have continued to run in Snowflake alone, but dbt provided structure around it: versioned models, explicit contracts, and visible failure modes.
+dbt provided structure around logic: versioned models, explicit contracts, and visible failure modes.
 
 ---
 
