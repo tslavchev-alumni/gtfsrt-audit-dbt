@@ -25,7 +25,7 @@ Relevant file:
 - Minute and 5-minute health facts built via tasks (pre-dbt)
 
 Relevant files:
-- snowflake/gtfs_rt/V_ENTITIES_CANONICAL.sql
+- [snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql]
 - snowflake/tasks/TASK_BUILD_MINUTE_FACTS_48H.sql
 - snowflake/tasks/TASK_BUILD_HEALTH_5M_48H.sql
 
