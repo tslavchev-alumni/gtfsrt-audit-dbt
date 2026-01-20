@@ -1,3 +1,13 @@
+-- Compute 5-minute bucketed GTFS-RT feed health for monitoring and trend analysis.
+-- 1 row per (bucket_start_utc, feed_type).
+-- Inputs:
+--   - feed_minute_facts (minute-grain evidence)
+--   - feed_health_thresholds (seeded contract thresholds)
+-- Health logic:
+--   1) pipeline staleness OR source staleness -> FAIL
+--   2) high ingestion lag -> WARN
+--   3) otherwise -> OK
+
 {{ config(
     materialized='incremental',
     unique_key=['bucket_start_utc','feed_type']

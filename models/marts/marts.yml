@@ -2,26 +2,101 @@ version: 2
 
 models:
   - name: feed_minute_facts
-    description: Per-minute GTFS-RT freshness and ingestion lag.
+    description: >
+      Minute-grain feed facts derived from canonical GTFS-RT entities.
+      One row represents the latest observed fetch/source timestamps for a feed_type within a UTC minute.
+      This model is the base evidence layer for downstream rollups (e.g., 5-minute health buckets).
     columns:
       - name: minute_utc
-        tests: [not_null]
+        description: UTC minute timestamp (start of minute) for the fact row.
+        tests:
+          - not_null
+
       - name: feed_type
-        tests: [not_null]
+        description: GTFS-RT feed type (vehicles, trips, alerts).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['vehicles', 'trips', 'alerts']
+
+      - name: latest_fetch_ts_utc
+        description: Latest fetch timestamp observed for the feed_type within the minute (UTC).
+        tests:
+          - not_null
+
+      - name: latest_source_ts_utc
+        description: Latest producer (FeedHeader) timestamp observed for the feed_type within the minute (UTC).
+        tests:
+          - not_null
+
+      - name: seconds_ingestion_lag
+        description: Ingestion lag in seconds, computed as latest_fetch_ts_utc - latest_source_ts_utc. Lower is better.
+        tests:
+          - not_null
+
+      - name: created_ts_utc
+        description: UTC timestamp when this row was produced by dbt.
+
   - name: feed_health_5m
-    description: 5-minute GTFS-RT feed health facts.
+    description: >
+      5-minute bucketed feed health facts and status for operational monitoring and trends.
+      One row represents the health evaluation for a (feed_type, 5-minute UTC bucket).
+      Health status is derived from freshness + lag metrics compared against per-feed thresholds.
     columns:
       - name: bucket_start_utc
-        tests: [not_null]
+        description: Start of the 5-minute bucket in UTC.
+        tests:
+          - not_null
+
+      - name: bucket_end_utc
+        description: End of the 5-minute bucket in UTC.
+        tests:
+          - not_null
+
       - name: feed_type
+        description: GTFS-RT feed type (vehicles, trips, alerts).
         tests:
           - not_null
           - accepted_values:
               arguments:
-                values: ['alerts','trips','vehicles']
+                values: ['vehicles', 'trips', 'alerts']
+
+      - name: latest_fetch_ts_utc
+        description: Latest fetch timestamp used for the bucket evaluation (UTC).
+
+      - name: latest_source_ts_utc
+        description: Latest producer timestamp used for the bucket evaluation (UTC).
+
+      - name: seconds_since_last_fetch
+        description: Fetch staleness in seconds. bucket_end_utc - latest_fetch_ts_utc. Lower is better.
+        tests:
+          - not_null
+
+      - name: seconds_source_stale
+        description: Source staleness, in seconds. bucket_end_utc - latest_source_ts_utc. Lower is better.
+        tests:
+          - not_null
+
+      - name: seconds_ingestion_lag
+        description: Ingestion lag in seconds. latest_fetch_ts_utc - latest_source_ts_utc. Lower is better.
+        tests:
+          - not_null
+
       - name: health_status
+        description: Health classification for the bucket (OK/WARN/FAIL).
         tests:
           - not_null
           - accepted_values:
               arguments:
-                values: ['OK','WARN','FAIL']
+                values: ['OK', 'WARN', 'FAIL']
+
+      - name: primary_issue
+        description: Primary issue label when health_status is not OK (pipeline_stale, source_stale, ingestion_lag_high). Null when health_status is OK.
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['pipeline_stale', 'source_stale', 'ingestion_lag_high']
+
+      - name: created_ts_utc
+        description: UTC timestamp when this row was produced by dbt.

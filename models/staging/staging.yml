@@ -2,10 +2,23 @@ version: 2
 
 models:
   - name: stg_entities_canonical
-    description: Canonical GTFS-RT entities with normalized UTC timestamps.
+    description: Canonical GTFS-RT entities with normalized UTC timestamps. Surfaces the Silver contract maintained outside dbt (ANALYTICS.GTFS_RT.V_ENTITIES_CANONICAL) as the dbt staging layer.
     columns:
       - name: feed_type
-        tests: [not_null]
+        description: GTFS-RT feed type (vehicles, trips, or alerts).
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['vehicles', 'trips', 'alerts']
+
+      - name: entity_id
+        description: Row number within a single JSONL file
+      
       - name: fetch_ts_utc
-        tests: [not_null]
+        description: UTC timestamp when the GTFS-RT feed was fetched by the ingestion pipeline.
+        tests:
+          - not_null
+
       - name: source_header_ts_utc
+        description: UTC timestamp reported by the GTFS-RT FeedHeader (producer timestamp). May be null for older ingestions or feeds that omit the header timestamp.
