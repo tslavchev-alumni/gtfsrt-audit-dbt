@@ -10,8 +10,7 @@ For a structural overview of the repository and pointers to specific files, see 
 
 The focus on feed health was a deliberate simplification.
 
-Feed health is not the end goal of a real GTFS-Realtime analytics system. It is the smallest non-trivial question that immediately exposes ingestion gaps,
-timestamp ambiguity, and state management problems. That made it a useful forcing function for designing and testing the data pipeline itself.
+Feed health is not the end goal of a real GTFS-Realtime analytics system. It is the smallest non-trivial question that immediately exposes ingestion gaps, timestamp ambiguity, and state management problems. That made it useful for designing and testing the data pipeline itself.
 
 If this were a production project, feed health would be a prerequisite rather than the outcome. Once trust in the feeds exists, downstream work would naturally move toward service reliability, vehicle behavior, or schedule adherence. Those problems are domain-specific and context-dependent, so I intentionally avoided them here.
 
