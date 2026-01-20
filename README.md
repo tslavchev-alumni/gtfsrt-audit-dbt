@@ -27,9 +27,9 @@ The focus of the project is data engineering mechanics: contract boundaries, inc
 ## How to navigate this project
 
 - **System structure and file locations**:  
-  See [architecture.md](./ARCHITECTURE.md).
+  See [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 - **Design rationale, tradeoffs, and lessons learned**:  
-  See [portfolio.md](./PORTFOLIO.md).
+  See [PORTFOLIO.md](./PORTFOLIO.md).
 
 This project intentionally does not include dashboards, business KPIs, or continuous streaming infrastructure. The scope is limited to building a reliable, explainable data pipeline rather than a full analytics product.
