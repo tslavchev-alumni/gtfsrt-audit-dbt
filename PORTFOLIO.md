@@ -1,8 +1,8 @@
-# GTFS-Realtime Feed Health Audit — Portfolio Notes
+# Portfolio Notes
 
 This document captures the design rationale, architectural tradeoffs, and lessons learned from building the GTFS-Realtime Feed Health Audit pipeline.
 
-For a structural overview of the repository and pointers to specific files, see [architecture.md](./architecture.md).
+For a structural overview of the repository and pointers to specific files, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ---
 
