@@ -8,7 +8,7 @@ The project is presented as a portfolio artifact and includes:
 - dbt models, tests, and documentation
 - a Snowflake semantic layer for exploration
 
-The focus of the project is data engineering mechanics: contract boundaries, incremental state management, and operational correctness. The use case (GTFS-RT feed health) is intentionally narrow and serves as a forcing function rather than a business outcome.
+The focus of the project is data engineering mechanics: contract boundaries, incremental state management, and operational correctness. The use case (feed health) is intentionally narrow and serves as a forcing function rather than a business outcome.
 
 ## What’s in this repository
 
