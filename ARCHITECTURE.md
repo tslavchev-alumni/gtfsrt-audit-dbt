@@ -17,7 +17,7 @@ Lambda -> S3 -> Snowflake (canonical views + tasks) -> dbt -> semantic layer (Co
 - No direct coupling to Snowflake
 
 Relevant file:
-- [ingestion/lambda_function.py](ingestion/lambda_function.py)
+- [ingestion/lambda_function.py](./ingestion/lambda_function.py)
 
 ## Snowflake
 - S3 files treated as raw evidence
