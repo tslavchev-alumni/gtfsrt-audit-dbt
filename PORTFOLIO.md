@@ -14,7 +14,7 @@ Feed health is not the end goal of a real GTFS-Realtime analytics system. It is 
 
 If this were a production project, feed health would be a prerequisite rather than the outcome. Once trust in the feeds exists, downstream work would naturally move toward service reliability, vehicle behavior, or schedule adherence. Those problems are domain-specific and context-dependent, so I intentionally avoided them here.
 
-The goal of this project was not to demonstrate transit analytics expertise, but to design and reason about a reliable, testable, and explainable data engineering system.
+The goal of this project was to design and reason about a reliable, testable, and explainable data engineering system.
 
 ---
 
