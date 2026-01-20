@@ -27,9 +27,9 @@ Relevant file:
 - Minute and 5-minute health facts built via tasks (pre-dbt)
 
 Relevant files:
-- [snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql](./snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql)
-- [snowflake/gtfs_rt/40.TASK_BUILD_MINUTE_FACTS_48H.sql](./snowflake/gtfs_rt/40.TASK_BUILD_MINUTE_FACTS_48H.sql)
-- [snowflake/gtfs_rt/41.TASK_BUILD_HEALTH_5M_48H.sql](./snowflake/gtfs_rt/41.TASK_BUILD_HEALTH_5M_48H.sql)
+- [snowflake/10.V_ENTITIES_CANONICAL.sql](./snowflake/10.V_ENTITIES_CANONICAL.sql)
+- [snowflake/40.TASK_BUILD_MINUTE_FACTS_48H.sql](./snowflake/40.TASK_BUILD_MINUTE_FACTS_48H.sql)
+- [snowflake/41.TASK_BUILD_HEALTH_5M_48H.sql](./snowflake/41.TASK_BUILD_HEALTH_5M_48H.sql)
 
 ## dbt
 - Consumes canonical Snowflake views
@@ -46,4 +46,4 @@ Relevant folders:
 - Built on 5-minute health facts
 
 Relevant files:
-- [snowflake/gtfs_rt/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql](./snowflake/gtfs_rt/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql)
+- [snowflake/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql](./snowflake/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql)
