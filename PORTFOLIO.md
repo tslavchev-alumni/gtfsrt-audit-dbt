@@ -42,10 +42,9 @@ dbt provided structure around logic: versioned models, explicit contracts, and v
 
 After the Snowflake + dbt pipeline was stable, I mirrored the same problem in Databricks to compare how the same mental model translated to a lakehouse-style system.
 
-The scope was intentionally constrained. I reused the same source data, canonical concepts, and health logic. What stood out was how much behavior Databricks encoded into defaults: incremental ingestion, state management, and schema handling required less explicit code.
+The scope was further limited. I reused the same source data, canonical concepts, and health logic. What stood out was how much behavior Databricks encoded into defaults: incremental ingestion, state management, and schema handling required less explicit code.
 
-This reduced friction but shifted responsibility. Correctness depended more on understanding platform guarantees than on writing explicit logic. I stopped short of
-fully productionizing this version; the goal was to understand abstraction boundaries, not to add another system to maintain.
+This reduced friction but shifted responsibility. Correctness depended more on understanding platform guarantees than on writing explicit logic. I stopped short of fully productionizing this version; the goal was to understand abstraction boundaries, not to add another system to maintain.
 
 ---
 
