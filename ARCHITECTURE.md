@@ -25,9 +25,9 @@ Relevant file:
 - Minute and 5-minute health facts built via tasks (pre-dbt)
 
 Relevant files:
-- [snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql]
-- snowflake/tasks/TASK_BUILD_MINUTE_FACTS_48H.sql
-- snowflake/tasks/TASK_BUILD_HEALTH_5M_48H.sql
+- [snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql](./snowflake/gtfs_rt/10.V_ENTITIES_CANONICAL.sql)
+- [snowflake/gtfs_rt/40.TASK_BUILD_MINUTE_FACTS_48H.sql](./snowflake/gtfs_rt/40.TASK_BUILD_MINUTE_FACTS_48H.sql)
+- [snowflake/gtfs_rt/41.TASK_BUILD_HEALTH_5M_48H.sql](./snowflake/gtfs_rt/41.TASK_BUILD_HEALTH_5M_48H.sql)
 
 ## dbt
 - Consumes canonical Snowflake views
@@ -35,13 +35,13 @@ Relevant files:
 - Applies contract tests and documentation via YAML
 
 Relevant folders:
-- models/
-- seeds/
-- tests/
+- [models/](./models/)
+- [seeds/](./seeds/)
+- [tests/](./tests/)
 
 ## Semantic layer
 - Snowflake semantic view for Cortex Analyst
 - Built on 5-minute health facts
 
 Relevant files:
-- snowflake/semantic/GTFS_RT_FEED_HEALTH.sql
+- [snowflake/gtfs_rt/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql](./snowflake/gtfs_rt/50.SEMANTIC_VIEW_GTFS_RT_FEED_HEALTH.sql)
