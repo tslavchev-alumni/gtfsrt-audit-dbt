@@ -100,7 +100,7 @@ Across all implementations, the most persistent source of complexity was state. 
 
 ### Constrained problem scope enabled architectural breadth
 
-Focusing on feed health enabled deeper exploration of ingestion, contracts, and incremental state without being distracted by domain-specific analytics. Solving a small but structurally demanding problem provided more learning than broader but shallower use cases.
+By keeping the analytical question simple, I was able to focus on how the same concepts (canonical contracts, incremental state, semantics) map across different environments. I was able to build familiarity with multiple tools.
 
 ---
 
